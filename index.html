@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extractor de Métricas - Redes Sociales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Extractor de Métricas de Redes Sociales</h1>
+            <p class="subtitle">Obtén métricas detalladas de Facebook y YouTube en formato Excel</p>
+        </header>
+
+        <!-- Selector de Plataforma -->
+        <div class="platform-selector">
+            <button class="platform-btn active" data-platform="facebook">
+                <span class="icon">📘</span>
+                Facebook
+            </button>
+            <button class="platform-btn" data-platform="youtube">
+                <span class="icon">📺</span>
+                YouTube
+            </button>
+        </div>
+
+        <!-- Formulario Facebook -->
+        <div class="form-container" id="facebook-form">
+            <h2>Configuración de Facebook</h2>
+            <form id="fb-extraction-form">
+                <div class="form-group">
+                    <label for="fb-page-id">
+                        Page ID
+                        <span class="tooltip" title="ID de tu página de Facebook">ℹ️</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="fb-page-id" 
+                        name="page_id" 
+                        placeholder="Ej: 804578252729420"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="fb-access-token">
+                        Token de Acceso
+                        <span class="tooltip" title="Token de acceso de la API de Facebook">ℹ️</span>
+                    </label>
+                    <textarea 
+                        id="fb-access-token" 
+                        name="access_token" 
+                        rows="3"
+                        placeholder="Pega aquí tu token de acceso"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="fb-days-back">
+                        Días hacia atrás
+                        <span class="tooltip" title="Número de días desde hoy para obtener datos">ℹ️</span>
+                    </label>
+                    <input 
+                        type="number" 
+                        id="fb-days-back" 
+                        name="days_back" 
+                        value="10" 
+                        min="1" 
+                        max="90"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span class="btn-icon">🚀</span>
+                    Extraer Métricas de Facebook
+                </button>
+            </form>
+        </div>
+
+        <!-- Formulario YouTube -->
+        <div class="form-container hidden" id="youtube-form">
+            <h2>Configuración de YouTube</h2>
+            <form id="yt-extraction-form">
+                <div class="form-group">
+                    <label for="yt-channel-id">
+                        Channel ID
+                        <span class="tooltip" title="ID de tu canal de YouTube (empieza con UC...)">ℹ️</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="yt-channel-id" 
+                        name="channel_id" 
+                        placeholder="Ej: UCxxxxxxxxxxxxxx"
+                        required
+                    >
+                    <small>Puedes encontrarlo en la URL de tu canal o en la configuración avanzada</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="yt-days-back">
+                        Días hacia atrás
+                        <span class="tooltip" title="Número de días desde hoy para obtener datos">ℹ️</span>
+                    </label>
+                    <input 
+                        type="number" 
+                        id="yt-days-back" 
+                        name="days_back" 
+                        value="10" 
+                        min="1" 
+                        max="90"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span class="btn-icon">🚀</span>
+                    Extraer Métricas de YouTube
+                </button>
+            </form>
+        </div>
+
+        <!-- Área de Resultados -->
+        <div class="results-container hidden" id="results">
+            <div class="result-card">
+                <div class="result-icon" id="result-icon">✅</div>
+                <h3 id="result-title">Extracción Exitosa</h3>
+                <p id="result-message"></p>
+                <div class="result-stats" id="result-stats"></div>
+                <button class="btn-download" id="download-btn">
+                    <span class="btn-icon">⬇️</span>
+                    Descargar Excel
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-overlay hidden" id="loading">
+            <div class="spinner"></div>
+            <p>Extrayendo métricas, por favor espera...</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>💡 <strong>Nota:</strong> Las métricas de Facebook usan API v24.0. Para YouTube se requiere yt-dlp instalado.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
