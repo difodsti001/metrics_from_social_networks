@@ -233,7 +233,7 @@ pip install --upgrade yt-dlp
 ```
 
 ### Renovar tokens de Facebook:
-Los tokens de corta duración expiran en 1-2 horas. Para tokens de larga duración, usar tokens de página (page access tokens).
+Los tokens se renuevan a cada hora.
 
 ## 📞 Soporte
 
@@ -245,15 +245,3 @@ Para problemas o mejoras, revisar:
 
 Este código es de uso interno. Mantener confidenciales los tokens y credenciales.
 
----
-
-**Versión**: 2.0 (Web)  
-**Última actualización**: 2026-01-28
-
-### Cambios recientes (v2.0):
-- ✅ Interfaz web moderna con Flask
-- ✅ Parámetros dinámicos por sesión (sin modificar config)
-- ✅ Selector de rango de fechas en la interfaz
-- ✅ Descarga directa de Excel desde el navegador
-- ✅ Soporte simultáneo para Facebook y YouTube en web
-- ✅ Indicador de progreso durante la extracción
